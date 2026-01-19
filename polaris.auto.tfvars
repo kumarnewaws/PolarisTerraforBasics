@@ -1,0 +1,6 @@
+vpc_cidr      = "172.25.0.0/16"
+vpc_name      = "polaris"
+subnet_cidr_1 = "172.25.1.0/24"
+subnet_cidr_2 = "172.25.2.0/24"
+az1           = "ap-south-1a"
+az2           = "ap-south-1b"
