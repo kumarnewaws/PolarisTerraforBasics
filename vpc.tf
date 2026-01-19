@@ -32,3 +32,13 @@ resource "aws_subnet" "Demo_Subnet_2" {
     "Name" = "Polaris-Subnet-2"
   }
 }
+
+resource "aws_subnet" "Demo_Subnet_3" {
+  vpc_id                  = aws_vpc.DemoVPC.id
+  cidr_block              = var.subnet_cidr_3
+  availability_zone       = var.az3
+  map_public_ip_on_launch = true
+  tags = {
+    "Name" = "Polaris-Subnet-3"
+  }
+}
