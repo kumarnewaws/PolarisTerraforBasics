@@ -11,6 +11,7 @@ resource "aws_internet_gateway" "DemoIGW" {
   tags = {
     "Name" = "Polaris-IGW"
   }
+  depends_on = [ aws_vpc.DemoVPC ]
 }
 
 resource "aws_subnet" "Demo_Subnet_1" {
@@ -21,6 +22,7 @@ resource "aws_subnet" "Demo_Subnet_1" {
   tags = {
     "Name" = "Polaris-Subnet-1"
   }
+  depends_on = [ aws_internet_gateway.DemoIGW ]
 }
 
 resource "aws_subnet" "Demo_Subnet_2" {
@@ -31,6 +33,7 @@ resource "aws_subnet" "Demo_Subnet_2" {
   tags = {
     "Name" = "Polaris-Subnet-2"
   }
+  depends_on = [ aws_subnet.Demo_Subnet_1 ]
 }
 
 resource "aws_subnet" "Demo_Subnet_3" {
@@ -40,5 +43,9 @@ resource "aws_subnet" "Demo_Subnet_3" {
   map_public_ip_on_launch = true
   tags = {
     "Name" = "Polaris-Subnet-3"
+  }
+  depends_on = [ aws_subnet.Demo_Subnet_2 ]
+  lifecycle {
+    create_before_destroy = true
   }
 }
